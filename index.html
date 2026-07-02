@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마음손길</title>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#section1" class="logo">마음손길</a>
+            <nav class="header-nav">
+                <a href="#section2">처음 오시는 분</a>
+                <a href="#section3">마음손길의 기준</a>
+                <a href="#section4">마음손길의 시간</a>
+                <a href="#section6">대표가 믿는 것</a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="#section2">처음 오시는 분</a>
+            <a href="#section3">마음손길의 기준</a>
+            <a href="#section4">마음손길의 시간</a>
+            <a href="#section6">대표가 믿는 것</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="#" class="btn-kakao js-open-booking">카카오로 예약</a>
+        </div>
+    </div>
+
+    <!-- 우측 플로팅 메뉴 -->
+    <nav class="floating-menu">
+        <a href="#section1" class="dot active" data-tooltip="첫 화면"></a>
+        <a href="#section2" class="dot" data-tooltip="처음 오시는 분"></a>
+        <a href="#section3" class="dot" data-tooltip="마음손길의 기준"></a>
+        <a href="#section4" class="dot" data-tooltip="마음손길의 시간"></a>
+        <a href="#section5" class="dot" data-tooltip="공간"></a>
+        <a href="#section6" class="dot" data-tooltip="대표가 믿는 것"></a>
+        <a href="#section7" class="dot" data-tooltip="첫 시간 시작하기"></a>
+        <a href="#section8" class="dot" data-tooltip="위치와 운영"></a>
+    </nav>
+
+    <!-- 하단 플로팅 CTA -->
+    <div class="floating-cta">
+        <a href="#" class="btn-kakao js-open-booking">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.63 1.5 4.95 3.82 6.38L4.5 21l4.7-2.55c.82.22 1.68.34 2.58.34h.44C12.74 18.79 13 18.4 13 18c0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .4.26.79.66 1.21C4.54 14.1 3 12.05 3 10c0-3.87 4.03-7 9-7s9 3.13 9 7-4.03 7-9 7c-.9 0-1.76-.12-2.58-.34L4.72 21l.32-4.62C3.5 14.95 2 12.63 2 10c0-4.42 4.48-8 10-8s10 3.58 10 8-4.48 8-10 8z"/></svg>
+            카카오로 예약
+        </a>
+        <a href="#section4" class="btn-time">나에게 맞는 시간 찾기</a>
+    </div>
+
+    <!-- SECTION 1: 첫 화면 -->
+    <section id="section1" class="section hero">
+        <div class="video-bg">
+            <img src="assets/maumsongil-cinematic-poster.png" alt="정밀한 손길과 부드러운 경험">
+            <div class="video-overlay"></div>
+        </div>
+        <div class="content">
+            <p class="eyebrow">Brain Aesthetic, Maumsongil</p>
+            <h1 class="main-title">머리가 조용해지는 시간</h1>
+            <p class="sub-title">오늘의 컨디션을 읽는 브레인 에스테틱, 마음손길</p>
+            <p class="hero-desc">관리보다, 컨디션을 먼저 읽습니다.<br>정밀한 손길과 부드러운 경험으로 인상의 결을 정돈합니다.</p>
+            <div class="hero-info">
+                <span class="info-pill">60분 첫 방문 <strong>27만원</strong></span>
+                <span class="info-pill">신용산 래미안더센트럴</span>
+                <span class="info-pill">예약제 운영</span>
+            </div>
+            <a href="#section2" class="btn-primary">첫 60분 프리뷰 보기</a>
+        </div>
+        <p class="hero-note">한 번의 시간이 남기는 것은, 맑아진 컨디션과 정돈된 인상입니다.</p>
+        <div class="scroll-hint">
+            <span>아래로 스크롤</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: 처음 오시는 분께 -->
+    <section id="section2" class="section">
+        <div class="split-layout">
+            <div class="visual-area">
+                <img src="assets/maumsongil-first-visit.png" alt="마음손길 프리뷰">
+            </div>
+            <div class="content">
+                <p class="eyebrow">For First Visit</p>
+                <h2>처음 오시는 분께</h2>
+                <p class="sub">가장 가벼운 첫 시간</p>
+                <p class="body">처음이라면, 60분 프리뷰부터.<br>마음손길의 결을 처음 만나보시는 시간입니다.<br>오늘 들어오실 때의 컨디션을 먼저 읽어내고,<br>어떤 깊이가 가장 가까운지 차분히 살펴드립니다.</p>
+                <div class="info-tags">
+                    <span>부담을 낮춘 60분</span>
+                    <span>27만원</span>
+                    <span>1:1 프라이빗룸</span>
+                </div>
+                <a href="#section4" class="btn-primary">프리뷰 자세히 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 마음손길의 기준 -->
+    <section id="section3" class="section dark">
+        <div class="split-layout reverse">
+            <div class="visual-area">
+                <img src="assets/maumsongil-standard-v2.png" alt="오감 조율">
+            </div>
+            <div class="content">
+                <p class="eyebrow">Maumsongil Standard</p>
+                <h2>마음손길의 기준</h2>
+                <p class="sub">마음손길만 다른 이유</p>
+                <p class="body">오늘의 컨디션을 읽는 브레인 에스테틱, 마음손길.<br>관리보다, 컨디션을 먼저 읽는 곳입니다.<br><br>잘 자고도 개운하지 않은 아침이 있습니다.<br>중요한 날일수록, 얼굴보다 먼저 정돈되어야 하는 것이 있습니다.<br>결이 정돈되는 시간은, 조용한 몰입 안에서만 시작됩니다.</p>
+                <div class="flow">
+                    <div class="flow-item">
+                        <span class="num">01</span>
+                        <div class="flow-text">
+                            <strong>오늘을 읽는 시간</strong>
+                            <span>도착해서 자리에서, 오늘의 상태를 가만히 살핍니다.</span>
+                        </div>
+                    </div>
+                    <div class="flow-line"></div>
+                    <div class="flow-item">
+                        <span class="num">02</span>
+                        <div class="flow-text">
+                            <strong>흐름이 바뀌는 시간</strong>
+                            <span>그날의 결을 따라, 필요한 감각의 흐름만 골라 조율합니다.</span>
+                        </div>
+                    </div>
+                    <div class="flow-line"></div>
+                    <div class="flow-item">
+                        <span class="num">03</span>
+                        <div class="flow-text">
+                            <strong>표정이 돌아오는 시간</strong>
+                            <span>마무리 후, 가장 자연스럽게 편안해집니다.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-language">
+                    <span>머리가 조용해졌어요.</span>
+                    <span>표정이 부드러워졌어요.</span>
+                    <span>잠깐 잤는데 오래 쉰 느낌이에요.</span>
+                    <span>단순한 관리가 아니라 컨디션이 맑아져요.</span>
+                    <span>인상이 정리되었어요.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: 마음손길의 시간 -->
+    <section id="section4" class="section">
+        <div class="content wide">
+            <p class="eyebrow">Our Time</p>
+            <h2>마음손길의 시간</h2>
+            <p class="sub">네 가지 깊이</p>
+            <p class="body">오늘의 컨디션은 한 가지로 정해져 있지 않습니다.<br>지금의 상태와 원하는 여운에 따라, 마음손길의 시간은 네 가지 길로 풀어냅니다.</p>
+            <p class="time-lead">가볍게 시작하고 싶다면, 27만원 60분 프리뷰로.</p>
+            <div class="time-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="time">90분</span>
+                        <span class="name">마음의 시간</span>
+                    </div>
+                    <span class="price">정가 38만원</span>
+                    <p class="card-desc">오늘의 컨디션을 읽고 흐름을 가볍게 정돈하는 시간.</p>
+                    <p class="recommend">추천 고객: 오늘 처음으로 마음손길을 만나시는 분</p>
+                    <a href="#" class="card-link js-open-booking">예약 문의</a>
+                </div>
+                <div class="card featured">
+                    <div class="featured-badge">대표</div>
+                    <div class="card-header">
+                        <span class="time">120분</span>
+                        <span class="name">결의 시간</span>
+                    </div>
+                    <span class="price">58만원</span>
+                    <p class="card-desc">컨디션과 표정의 결을 함께 정돈하는 대표 시간.</p>
+                    <p class="recommend">추천 고객: 결을 함께 정돈하고 싶은 분</p>
+                    <a href="#" class="card-link js-open-booking">예약 문의</a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="time">150분</span>
+                        <span class="name">누적의 시간</span>
+                    </div>
+                    <span class="price">78만원</span>
+                    <p class="card-desc">무겁게 누적된 긴장과 피로를 깊게 풀어내는 시간.</p>
+                    <p class="recommend">추천 고객: 무언가가 누적된 분</p>
+                    <a href="#" class="card-link js-open-booking">예약 문의</a>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="time">맞춤</span>
+                        <span class="name">깊은 시간</span>
+                    </div>
+                    <span class="price">상담 후 안내</span>
+                    <p class="card-desc">특별히 깊은 이완과 긴 여운이 필요한 날을 위한 시간.</p>
+                    <p class="recommend">추천 고객: 특별히 깊은 시간이 필요한 분</p>
+                    <a href="#" class="card-link js-open-booking">예약 문의</a>
+                </div>
+            </div>
+            <p class="program-note">첫 방문 1인 1회 한정 프리뷰 27 / 평일 한정 · 오픈 초기 100명 한정 · 기존 고객 추천 동행가</p>
+            <div class="section-cta">
+                <p class="cta-text">어떤 시간이 오늘의 나에게 맞을지 모르겠다면,<br>카카오에서 컨디션을 먼저 이야기해 주세요.</p>
+                <a href="#" class="btn-kakao-large js-open-booking">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.63 1.5 4.95 3.82 6.38L4.5 21l4.7-2.55c.82.22 1.68.34 2.58.34h.44C12.74 18.79 13 18.4 13 18c0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .4.26.79.66 1.21C4.54 14.1 3 12.05 3 10c0-3.87 4.03-7 9-7s9 3.13 9 7-4.03 7-9 7c-.9 0-1.76-.12-2.58-.34L4.72 21l.32-4.62C3.5 14.95 2 12.63 2 10c0-4.42 4.48-8 10-8s10 3.58 10 8-4.48 8-10 8z"/></svg>
+                    카카오로 예약
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: 공간 -->
+    <section id="section5" class="section">
+        <div class="split-layout">
+            <div class="visual-area">
+                <img src="assets/maumsongil-private-room.png" alt="프라이빗 공간">
+            </div>
+            <div class="content">
+                <p class="eyebrow">Space</p>
+                <h2>공간</h2>
+                <p class="sub">같은 시간, 한 분을 위한 자리</p>
+                <p class="body">같은 시간에는 한 분만 머무는 자리입니다.<br>시작 전 인사와 마무리 후 다독임까지,<br>흐름이 끊기지 않도록 짜인 조용한 개인 공간에서<br>오늘의 컨디션만 집중할 수 있습니다.</p>
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">◆</span>
+                        <span>예약제 운영</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">◆</span>
+                        <span>같은 시간 한 분만 머무름</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">◆</span>
+                        <span>프라이빗 개인룸</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">◆</span>
+                        <span>1:1 집중 케어</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: 대표가 믿는 것 -->
+    <section id="section6" class="section dark">
+        <div class="split-layout reverse">
+            <div class="visual-area">
+                <img src="assets/maumsongil-founder-belief.png" alt="대표">
+            </div>
+            <div class="content">
+                <p class="eyebrow">Our Story</p>
+                <h2>대표가 믿는 것</h2>
+                <p class="sub">정밀한 손길, 부드러운 경험</p>
+                <blockquote>
+                    "사람은 지친 날, 가장 먼저 달라지는 것이 얼굴보다도 컨디션이라는 사실을 오랫동안 지켜봐 왔습니다. 그래서 마음손길은 관리보다 컨디션을 먼저 읽는 일에서 시작했습니다."
+                </blockquote>
+                <p class="body">전문성은 손길과 시선, 집중력으로 증명하고<br>휴식은 평온해진 표정과 호흡으로 느껴져야 한다고 믿습니다.<br>한 분의 과부하와 컨디션, 인상의 결을 선명하게 다루는 곳입니다.</p>
+                <p class="signature">마음손길 대표</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: 첫 시간 시작하기 -->
+    <section id="section7" class="section cta-section">
+        <div class="content">
+            <p class="eyebrow">Begin</p>
+            <h2>첫 시간 시작하기</h2>
+            <p class="sub">마지막 초대</p>
+            <p class="body">마음손길의 첫 시간, 어떻게 시작하시겠어요?<br>처음이라면 60분 프리뷰부터 살펴보시거나,<br>더 궁금하시다면 카카오톡에서 가까운 시간을 먼저 확인하실 수 있습니다.<br>부담은 낮추고, 여유는 남겨둔 채로 시작하셔도 됩니다.</p>
+            <div class="cta-group">
+                <a href="#section4" class="btn-outline">나에게 맞는 시간 찾기</a>
+                <a href="#" class="btn-kakao-large js-open-booking">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.63 1.5 4.95 3.82 6.38L4.5 21l4.7-2.55c.82.22 1.68.34 2.58.34h.44C12.74 18.79 13 18.4 13 18c0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .4.26.79.66 1.21C4.54 14.1 3 12.05 3 10c0-3.87 4.03-7 9-7s9 3.13 9 7-4.03 7-9 7c-.9 0-1.76-.12-2.58-.34L4.72 21l.32-4.62C3.5 14.95 2 12.63 2 10c0-4.42 4.48-8 10-8s10 3.58 10 8-4.48 8-10 8z"/></svg>
+                    카카오로 예약
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: 위치와 운영 -->
+    <footer id="section8" class="footer">
+        <div class="footer-visual">
+            <img src="assets/maumsongil-arrival-footer.png" alt="위치">
+            <div class="footer-overlay"></div>
+        </div>
+        <div class="footer-content">
+            <h2>위치와 운영</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">위치</span>
+                    <span class="value">서울 강서구 신월로<br>신용산 래미안더센트럴</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">운영</span>
+                    <span class="value">매일 11:00 - 20:00<br>예약제 운영</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">채널</span>
+                    <span class="value">카카오톡 채널 마음손길<br>카카오톡으로만 응대합니다</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <a href="#section1" class="footer-logo">마음손길</a>
+                <p class="copyright">&copy; 마음손길. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <dialog id="bookingModal" class="booking-modal" aria-labelledby="bookingTitle">
+        <form method="dialog" class="modal-card">
+            <button class="modal-close" value="close" aria-label="닫기">×</button>
+            <p class="eyebrow">Reservation</p>
+            <h2 id="bookingTitle">카카오로 예약</h2>
+            <p class="modal-body">카카오톡 채널 <strong>마음손길</strong>에서 오늘의 컨디션과 가능한 시간을 먼저 확인해 주세요.</p>
+            <p class="modal-note">첫 방문 1인 1회 한정 프리뷰 27 / 평일 한정 · 오픈 초기 100명 한정 · 기존 고객 추천 동행가</p>
+            <button class="btn-kakao-large" value="close">확인</button>
+        </form>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
