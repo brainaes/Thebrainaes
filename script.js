@@ -111,9 +111,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// FAQ Accordion
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+        if (!item.open) return;
+
+        faqItems.forEach(other => {
+            if (other !== item) other.open = false;
+        });
+    });
+});
+
 // ─── Scroll Reveal Animation ───
 const revealElements = document.querySelectorAll(
-    '.section h2, .section .sub, .section .body, .card, .flow-item, .feature, blockquote, .info-item'
+    '.section h2, .section .sub, .section .body, .card, .flow-item, .feature, .faq-item, blockquote, .info-item'
 );
 
 revealElements.forEach(el => el.classList.add('reveal'));
