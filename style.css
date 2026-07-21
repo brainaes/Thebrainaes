@@ -280,6 +280,9 @@ h1, h2, h3 {
     max-width: 720px;
 }
 
+#section4 .content { text-align: center; }
+#section4 .info-tags { justify-content: center; }
+
 /* ─── Hero ─── */
 .hero {
     min-height: 100vh;
