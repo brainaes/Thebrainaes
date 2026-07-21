@@ -231,9 +231,11 @@ const programNames = {
 document.querySelectorAll('.js-open-finder').forEach(button => {
     button.addEventListener('click', event => {
         event.preventDefault();
+        finderForm?.reset();
         if (finderResult) finderResult.textContent = '';
         if (typeof timeFinder?.showModal === 'function') timeFinder.showModal();
         else timeFinder?.setAttribute('open', '');
+        requestAnimationFrame(() => finderForm?.scrollTo({ top: 0 }));
     });
 });
 

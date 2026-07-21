@@ -270,7 +270,13 @@ h1, h2, h3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 60px;
+    max-width: none;
+    padding: 80px clamp(48px, 5.5vw, 112px);
+}
+
+.split-layout .content > * {
+    width: 100%;
+    max-width: 720px;
 }
 
 /* ─── Hero ─── */
@@ -1363,7 +1369,7 @@ body.footer-visible .floating-cta {
 }
 
 /* Final spacing and type adjustments */
-.hero-intro { line-height: 1.8; }
+.hero-intro { line-height: 1.8; white-space: nowrap; }
 .first-visit-copy { margin: 30px 0; }
 .first-visit-copy p { margin: 0; line-height: 1.9; }
 .first-visit-copy p + p { margin-top: 12px; }
@@ -1596,6 +1602,50 @@ body.footer-visible .floating-cta {
 .membership-card h3 {
     margin-bottom: 18px;
     font-size: 25px;
+    word-break: keep-all;
+    text-wrap: balance;
+}
+
+.promise-grid .membership-card h3 span { display: block; }
+
+.promise-intro {
+    max-width: 780px;
+    margin: 28px auto 0;
+    color: var(--olive);
+    font-size: 14px;
+    line-height: 2;
+}
+
+.finder-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin: 42px 0 28px;
+    padding: 24px 28px;
+    border: 1px solid var(--sand);
+    background: rgba(255, 255, 255, .58);
+    text-align: left;
+}
+
+.finder-prompt div { min-width: 0; }
+.finder-prompt strong,
+.finder-prompt span { display: block; }
+.finder-prompt strong {
+    margin-bottom: 7px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    color: var(--night);
+}
+.finder-prompt span {
+    color: var(--olive);
+    font-size: 12px;
+    line-height: 1.7;
+}
+.finder-prompt .btn-outline {
+    flex: 0 0 auto;
+    margin: 0;
+    white-space: nowrap;
 }
 
 .membership-concept {
@@ -2014,6 +2064,13 @@ body.footer-visible .floating-cta {
 }
 
 @media (max-width: 768px) {
+    .finder-prompt {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 20px;
+        padding: 22px 20px;
+    }
+    .finder-prompt .btn-outline { width: 100%; }
     .info-grid { grid-template-columns: 1fr; gap: 24px; }
     .footer-content { min-height: 1180px; padding-bottom: 130px; }
     .detail-toggle { display: inline-block; margin-bottom: 18px; }
@@ -2032,5 +2089,6 @@ body.footer-visible .floating-cta {
 
 @media (max-width: 480px) {
     .finder-card { padding: 38px 20px 24px; }
+    .finder-card h2 { font-size: 26px; white-space: nowrap; }
     .back-to-top { right: 16px; bottom: 84px; }
 }
