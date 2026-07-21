@@ -83,9 +83,6 @@ function updateActiveDot() {
         if (scrollPos >= top && scrollPos < bottom) {
             dots.forEach(d => d.classList.remove('active'));
             if (dots[index]) dots[index].classList.add('active');
-            if (section.id && section.id !== 'section1') {
-                try { localStorage.setItem('maumsongil-last-section', section.id); } catch (_) {}
-            }
         }
     });
     
@@ -319,16 +316,3 @@ backToTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => document.getElementById('section1')?.focus({ preventScroll: true }), 550);
 });
-
-const resumeReading = document.getElementById('resumeReading');
-let savedSection = null;
-try { savedSection = localStorage.getItem('maumsongil-last-section'); } catch (_) {}
-
-if (resumeReading && !location.hash && savedSection && document.getElementById(savedSection)) {
-    resumeReading.hidden = false;
-    resumeReading.addEventListener('click', () => {
-        document.getElementById(savedSection)?.scrollIntoView({ behavior: 'smooth' });
-        resumeReading.hidden = true;
-    });
-    setTimeout(() => { resumeReading.hidden = true; }, 9000);
-}
