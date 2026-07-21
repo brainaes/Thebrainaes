@@ -270,6 +270,7 @@ h1, h2, h3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     max-width: none;
     padding: 80px clamp(48px, 5.5vw, 112px);
 }
@@ -580,6 +581,8 @@ h1, h2, h3 {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .flow-text strong {
@@ -1614,7 +1617,13 @@ body.footer-visible .floating-cta {
     color: var(--olive);
     font-size: 14px;
     line-height: 2;
+    word-break: keep-all;
 }
+
+.promise-grid .membership-card p,
+.card-desc,
+.finder-card label,
+.finder-card legend { word-break: keep-all; }
 
 .finder-prompt {
     display: flex;
@@ -1943,6 +1952,28 @@ body.footer-visible .floating-cta {
     color: var(--gold);
     font-family: 'Noto Serif KR', serif;
     font-size: 14px;
+}
+
+.finder-answer {
+    padding: 54px 0 24px;
+    text-align: center;
+}
+
+.finder-answer .finder-result {
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+.finder-retry {
+    margin-top: 18px;
+    border: 0;
+    border-bottom: 1px solid var(--olive);
+    padding: 5px 0;
+    background: transparent;
+    color: var(--olive);
+    cursor: pointer;
 }
 
 .finder-card > .btn-primary {

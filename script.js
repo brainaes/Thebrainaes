@@ -220,6 +220,11 @@ function showToast(message) {
 const timeFinder = document.getElementById('timeFinder');
 const finderForm = document.getElementById('finderForm');
 const finderResult = document.getElementById('finderResult');
+const finderQuestions = document.getElementById('finderQuestions');
+const finderAnswer = document.getElementById('finderAnswer');
+const finderGo = document.getElementById('finderGo');
+const finderRetry = document.getElementById('finderRetry');
+let recommendedCard;
 const programNames = {
     first60: '첫 시간 · 60분',
     mind90: '마음의 시간 · 90분',
@@ -233,6 +238,8 @@ document.querySelectorAll('.js-open-finder').forEach(button => {
         event.preventDefault();
         finderForm?.reset();
         if (finderResult) finderResult.textContent = '';
+        if (finderQuestions) finderQuestions.hidden = false;
+        if (finderAnswer) finderAnswer.hidden = true;
         if (typeof timeFinder?.showModal === 'function') timeFinder.showModal();
         else timeFinder?.setAttribute('open', '');
         requestAnimationFrame(() => finderForm?.scrollTo({ top: 0 }));
@@ -266,16 +273,25 @@ finderForm?.addEventListener('submit', event => {
     }
 
     if (finderResult) finderResult.textContent = `오늘 가장 가까운 시간은 ${programNames[program]}입니다.`;
-    const card = document.querySelector(`[data-program="${program}"]`);
-    setTimeout(() => {
-        timeFinder?.close();
-        document.querySelectorAll('.card.recommended').forEach(item => item.classList.remove('recommended'));
-        card?.classList.add('recommended');
-        card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card?.setAttribute('tabindex', '-1');
-        setTimeout(() => card?.focus({ preventScroll: true }), 550);
-        setTimeout(() => card?.classList.remove('recommended'), 5000);
-    }, 900);
+    recommendedCard = document.querySelector(`[data-program="${program}"]`);
+    if (finderQuestions) finderQuestions.hidden = true;
+    if (finderAnswer) finderAnswer.hidden = false;
+    finderForm?.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+finderRetry?.addEventListener('click', () => {
+    finderForm?.reset();
+    if (finderAnswer) finderAnswer.hidden = true;
+    if (finderQuestions) finderQuestions.hidden = false;
+    finderForm?.scrollTo({ top: 0 });
+});
+
+finderGo?.addEventListener('click', () => {
+    timeFinder?.close();
+    document.querySelectorAll('.card.recommended').forEach(item => item.classList.remove('recommended'));
+    recommendedCard?.classList.add('recommended');
+    recommendedCard?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => recommendedCard?.classList.remove('recommended'), 8000);
 });
 
 // ─── Mobile detail toggles ───

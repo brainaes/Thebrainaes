@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260722-8">
+    <link rel="stylesheet" href="style.css?v=20260722-9">
 </head>
 <body>
     <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
@@ -314,10 +314,17 @@
         <form id="finderForm" class="modal-card finder-card">
             <button type="button" class="modal-close js-close-finder" aria-label="닫기">×</button>
             <p class="eyebrow">Find Your Time</p><h2 id="finderTitle">나에게 맞는 시간 찾기</h2>
-            <fieldset><legend>1. 오늘 가장 가까운 상태는 무엇인가요?</legend><label><input type="radio" name="condition" value="light" required> 생각이 많고 머리가 무거운 날</label><label><input type="radio" name="condition" value="heavy"> 누적된 긴장과 피로가 있는 날</label><label><input type="radio" name="condition" value="event"> 컨디션과 인상을 함께 정돈하고 싶은 날</label></fieldset>
-            <fieldset><legend>2. 원하는 정돈의 깊이는 어느 쪽인가요?</legend><label><input type="radio" name="depth" value="light" required> 가볍게 시작하고 싶어요</label><label><input type="radio" name="depth" value="standard"> 집중과 이완을 함께 다루고 싶어요</label><label><input type="radio" name="depth" value="deep"> 가장 깊은 조율이 필요해요</label></fieldset>
-            <fieldset><legend>3. 가능한 시간은 어느 정도인가요?</legend><label><input type="radio" name="available" value="60" required> 60분</label><label><input type="radio" name="available" value="90"> 90분</label><label><input type="radio" name="available" value="120"> 120분</label><label><input type="radio" name="available" value="150"> 150분</label><label><input type="radio" name="available" value="flexible"> 시간보다 깊이가 중요해요</label></fieldset>
-            <p id="finderResult" class="finder-result" aria-live="polite"></p><button type="submit" class="btn-primary">추천 시간 확인하기</button>
+            <div id="finderQuestions">
+                <fieldset><legend>1. 오늘 가장 가까운 상태는 무엇인가요?</legend><label><input type="radio" name="condition" value="light" required> 생각이 많고 머리가 무거운 날</label><label><input type="radio" name="condition" value="heavy"> 누적된 긴장과 피로가 있는 날</label><label><input type="radio" name="condition" value="event"> 컨디션과 인상을 함께 정돈하고 싶은 날</label></fieldset>
+                <fieldset><legend>2. 원하는 정돈의 깊이는 어느 쪽인가요?</legend><label><input type="radio" name="depth" value="light" required> 가볍게 시작하고 싶어요</label><label><input type="radio" name="depth" value="standard"> 집중과 이완을 함께 다루고 싶어요</label><label><input type="radio" name="depth" value="deep"> 가장 깊은 조율이 필요해요</label></fieldset>
+                <fieldset><legend>3. 가능한 시간은 어느 정도인가요?</legend><label><input type="radio" name="available" value="60" required> 60분</label><label><input type="radio" name="available" value="90"> 90분</label><label><input type="radio" name="available" value="120"> 120분</label><label><input type="radio" name="available" value="150"> 150분</label><label><input type="radio" name="available" value="flexible"> 시간보다 깊이가 중요해요</label></fieldset>
+                <button type="submit" class="btn-primary">추천 시간 확인하기</button>
+            </div>
+            <div id="finderAnswer" class="finder-answer" hidden>
+                <p id="finderResult" class="finder-result" aria-live="polite"></p>
+                <button type="button" id="finderGo" class="btn-primary">추천 프로그램 보기</button>
+                <button type="button" id="finderRetry" class="finder-retry">다시 선택하기</button>
+            </div>
         </form>
     </dialog>
 
@@ -331,6 +338,6 @@
         </form>
     </dialog>
 
-    <script src="script.js?v=20260722-8"></script>
+    <script src="script.js?v=20260722-9"></script>
 </body>
 </html>
