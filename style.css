@@ -1363,6 +1363,26 @@ body.footer-visible .floating-cta {
     .resume-reading { display: none; }
 }
 
+/* Final spacing and type adjustments */
+.hero-intro { line-height: 1.8; }
+.promise-section { min-height: auto; }
+.promise-section .content.wide { padding-top: 90px; padding-bottom: 90px; }
+.membership-section > .content.wide { max-width: 1180px; }
+.membership-section > .content > .membership-grid .membership-card { padding-right: 24px; padding-left: 24px; }
+.membership-section > .content > .membership-grid .membership-card h3 {
+    font-size: 24px;
+    letter-spacing: -.045em;
+}
+.cta-section { min-height: 70vh; }
+.cta-section .content { padding-top: 90px; padding-bottom: 90px; }
+
+@media (max-width: 768px) {
+    .promise-section .content.wide { padding-top: 76px; padding-bottom: 76px; }
+    .membership-section > .content > .membership-grid .membership-card h3 { font-size: 24px; }
+    .cta-section { min-height: auto; }
+    .footer-content { min-height: 1040px; }
+}
+
 /* ─── PDF copy expansion ─── */
 :root {
     --gold: #a78b52;
@@ -1874,22 +1894,6 @@ body.footer-visible .floating-cta {
     border: 0;
 }
 
-.video-control {
-    position: absolute;
-    right: 18px;
-    bottom: 18px;
-    z-index: 5;
-    border: 1px solid rgba(250, 250, 249, .45);
-    padding: 7px 10px;
-    background: rgba(28, 25, 23, .55);
-    color: var(--cream);
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 9px;
-    letter-spacing: .08em;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-}
-
 .faq-tools {
     display: flex;
     gap: 14px;
@@ -2025,7 +2029,6 @@ body.footer-visible .floating-cta {
     .faq-tools { align-items: stretch; flex-direction: column; }
     .faq-actions { justify-content: center; }
     .comparison-panel { margin-bottom: 52px; }
-    .video-control { right: 12px; bottom: 12px; }
 }
 
 @media (max-width: 480px) {

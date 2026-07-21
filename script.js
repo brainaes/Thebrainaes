@@ -205,6 +205,8 @@ parallaxImages.forEach(img => {
     parallaxObserver.observe(img);
 });
 
+document.querySelectorAll('video').forEach(video => video.play().catch(() => {}));
+
 // ─── Shared toast ───
 const siteToast = document.getElementById('siteToast');
 let toastTimer;
@@ -286,29 +288,6 @@ document.querySelectorAll('.detail-toggle').forEach(button => {
         button.setAttribute('aria-expanded', String(expanded));
         button.textContent = expanded ? '간단히 보기' : container?.classList.contains('membership-card') ? '혜택 자세히 보기' : '상세 단계 보기';
     });
-});
-
-// ─── Video controls ───
-const pageVideos = document.querySelectorAll('video');
-
-pageVideos.forEach(video => {
-    const control = document.createElement('button');
-    control.type = 'button';
-    control.className = 'video-control';
-    control.setAttribute('aria-label', `${video.getAttribute('aria-label') || '배경'} 영상 재생 제어`);
-    control.textContent = '영상 정지';
-    video.parentElement?.appendChild(control);
-    control.addEventListener('click', () => {
-        if (video.paused) {
-            video.dataset.userPaused = 'false';
-            video.play().catch(() => {});
-        } else {
-            video.dataset.userPaused = 'true';
-            video.pause();
-        }
-        control.textContent = video.paused ? '영상 재생' : '영상 정지';
-    });
-    video.play().catch(() => {});
 });
 
 // ─── Copy helpers ───
