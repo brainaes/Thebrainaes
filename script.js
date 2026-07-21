@@ -1,5 +1,7 @@
 // ─── Header Scroll Effect ───
 const header = document.getElementById('header');
+const readingProgress = document.getElementById('readingProgress');
+const backToTop = document.getElementById('backToTop');
 let lastScroll = 0;
 
 function handleScroll() {
@@ -10,6 +12,13 @@ function handleScroll() {
     } else {
         header.classList.remove('scrolled');
     }
+
+    if (readingProgress) {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        readingProgress.style.width = `${scrollable > 0 ? Math.min(100, currentScroll / scrollable * 100) : 0}%`;
+    }
+
+    if (backToTop) backToTop.classList.toggle('visible', currentScroll > window.innerHeight);
     
     lastScroll = currentScroll;
 }
@@ -74,6 +83,9 @@ function updateActiveDot() {
         if (scrollPos >= top && scrollPos < bottom) {
             dots.forEach(d => d.classList.remove('active'));
             if (dots[index]) dots[index].classList.add('active');
+            if (section.id && section.id !== 'section1') {
+                try { localStorage.setItem('maumsongil-last-section', section.id); } catch (_) {}
+            }
         }
     });
     
@@ -95,6 +107,7 @@ updateActiveDot();
 // ─── Smooth Scroll ───
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        if (this.classList.contains('js-open-finder')) return;
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
         
@@ -107,21 +120,52 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetTop,
                 behavior: 'smooth'
             });
+            window.setTimeout(() => {
+                target.setAttribute('tabindex', '-1');
+                target.focus({ preventScroll: true });
+            }, 550);
         }
     });
 });
 
-// FAQ Accordion
+// FAQ tools
 const faqItems = document.querySelectorAll('.faq-item');
+let bulkFaqAction = false;
 
 faqItems.forEach(item => {
     item.addEventListener('toggle', () => {
-        if (!item.open) return;
+        if (!item.open || bulkFaqAction) return;
 
         faqItems.forEach(other => {
             if (other !== item) other.open = false;
         });
     });
+});
+
+const faqSearch = document.getElementById('faqSearch');
+const faqEmpty = document.getElementById('faqEmpty');
+
+faqSearch?.addEventListener('input', () => {
+    const query = faqSearch.value.trim().toLocaleLowerCase('ko');
+    let visibleCount = 0;
+    faqItems.forEach(item => {
+        const matches = !query || item.textContent.toLocaleLowerCase('ko').includes(query);
+        item.hidden = !matches;
+        if (matches) visibleCount += 1;
+    });
+    if (faqEmpty) faqEmpty.hidden = visibleCount !== 0;
+});
+
+document.getElementById('faqOpenAll')?.addEventListener('click', () => {
+    bulkFaqAction = true;
+    faqItems.forEach(item => { if (!item.hidden) item.open = true; });
+    setTimeout(() => { bulkFaqAction = false; }, 100);
+});
+
+document.getElementById('faqCloseAll')?.addEventListener('click', () => {
+    bulkFaqAction = true;
+    faqItems.forEach(item => { item.open = false; });
+    setTimeout(() => { bulkFaqAction = false; }, 100);
 });
 
 // ─── Scroll Reveal Animation ───
@@ -160,3 +204,167 @@ parallaxImages.forEach(img => {
     img.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
     parallaxObserver.observe(img);
 });
+
+// ─── Shared toast ───
+const siteToast = document.getElementById('siteToast');
+let toastTimer;
+
+function showToast(message) {
+    if (!siteToast) return;
+    siteToast.textContent = message;
+    siteToast.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => siteToast.classList.remove('visible'), 2200);
+}
+
+// ─── Program finder ───
+const timeFinder = document.getElementById('timeFinder');
+const finderForm = document.getElementById('finderForm');
+const finderResult = document.getElementById('finderResult');
+const programNames = {
+    mind90: '마음의 시간 · 90분',
+    texture120: '결의 시간 · 120분',
+    deep150: '깊은 시간 · 150분',
+    custom: '맞춤의 시간'
+};
+
+document.querySelectorAll('.js-open-finder').forEach(button => {
+    button.addEventListener('click', event => {
+        event.preventDefault();
+        if (finderResult) finderResult.textContent = '';
+        if (typeof timeFinder?.showModal === 'function') timeFinder.showModal();
+        else timeFinder?.setAttribute('open', '');
+    });
+});
+
+document.querySelectorAll('.js-close-finder').forEach(button => {
+    button.addEventListener('click', () => timeFinder?.close());
+});
+
+timeFinder?.addEventListener('click', event => {
+    if (event.target === timeFinder) timeFinder.close();
+});
+
+finderForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(finderForm);
+    const condition = data.get('condition');
+    const depth = data.get('depth');
+    const available = data.get('available');
+    let program = 'mind90';
+
+    if (available === '120') {
+        program = condition === 'light' && depth === 'light' ? 'mind90' : 'texture120';
+    } else if (available === '150') {
+        program = condition === 'event' || depth === 'deep' ? 'deep150' : depth === 'standard' || condition === 'heavy' ? 'texture120' : 'mind90';
+    } else if (available === 'flexible') {
+        program = condition === 'heavy' && depth === 'deep' ? 'custom' : condition === 'event' || depth === 'deep' ? 'deep150' : depth === 'standard' || condition === 'heavy' ? 'texture120' : 'mind90';
+    }
+
+    if (finderResult) finderResult.textContent = `오늘 가장 가까운 시간은 ${programNames[program]}입니다.`;
+    const card = document.querySelector(`[data-program="${program}"]`);
+    setTimeout(() => {
+        timeFinder?.close();
+        document.querySelectorAll('.card.recommended').forEach(item => item.classList.remove('recommended'));
+        card?.classList.add('recommended');
+        card?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card?.setAttribute('tabindex', '-1');
+        setTimeout(() => card?.focus({ preventScroll: true }), 550);
+        setTimeout(() => card?.classList.remove('recommended'), 5000);
+    }, 900);
+});
+
+// ─── Mobile detail toggles ───
+document.querySelectorAll('.detail-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+        const container = button.closest('.card, .membership-card');
+        const expanded = !container?.classList.contains('details-expanded');
+        container?.classList.toggle('details-expanded', expanded);
+        button.setAttribute('aria-expanded', String(expanded));
+        button.textContent = expanded ? '간단히 보기' : container?.classList.contains('membership-card') ? '혜택 자세히 보기' : '상세 단계 보기';
+    });
+});
+
+// ─── Video controls and data saving ───
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const saveData = navigator.connection?.saveData === true;
+const pageVideos = document.querySelectorAll('video');
+
+const videoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        const video = entry.target;
+        const mayPlay = entry.isIntersecting && video.dataset.userPaused !== 'true' && !prefersReducedMotion && !saveData;
+        if (mayPlay) video.play().catch(() => {});
+        else video.pause();
+        const control = video.parentElement?.querySelector('.video-control');
+        if (control) control.textContent = video.paused ? '영상 재생' : '영상 정지';
+    });
+}, { threshold: 0.2 });
+
+pageVideos.forEach(video => {
+    const control = document.createElement('button');
+    control.type = 'button';
+    control.className = 'video-control';
+    control.setAttribute('aria-label', `${video.getAttribute('aria-label') || '배경'} 영상 재생 제어`);
+    control.textContent = '영상 정지';
+    video.parentElement?.appendChild(control);
+    control.addEventListener('click', () => {
+        if (video.paused) {
+            video.dataset.userPaused = 'false';
+            video.play().catch(() => {});
+        } else {
+            video.dataset.userPaused = 'true';
+            video.pause();
+        }
+        control.textContent = video.paused ? '영상 재생' : '영상 정지';
+    });
+    if (prefersReducedMotion || saveData) {
+        video.dataset.userPaused = 'true';
+        video.pause();
+        control.textContent = '영상 재생';
+    }
+    videoObserver.observe(video);
+});
+
+// ─── Copy helpers ───
+async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+}
+
+document.querySelectorAll('.copy-button').forEach(button => {
+    button.addEventListener('click', async () => {
+        try {
+            await copyText(button.dataset.copy || '');
+            showToast('클립보드에 복사했습니다.');
+        } catch (_) {
+            showToast('복사하지 못했습니다. 다시 시도해 주세요.');
+        }
+    });
+});
+
+// ─── Reading convenience ───
+backToTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => document.getElementById('section1')?.focus({ preventScroll: true }), 550);
+});
+
+const resumeReading = document.getElementById('resumeReading');
+let savedSection = null;
+try { savedSection = localStorage.getItem('maumsongil-last-section'); } catch (_) {}
+
+if (resumeReading && !location.hash && savedSection && document.getElementById(savedSection)) {
+    resumeReading.hidden = false;
+    resumeReading.addEventListener('click', () => {
+        document.getElementById(savedSection)?.scrollIntoView({ behavior: 'smooth' });
+        resumeReading.hidden = true;
+    });
+    setTimeout(() => { resumeReading.hidden = true; }, 9000);
+}
