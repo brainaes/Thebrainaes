@@ -222,6 +222,7 @@ const timeFinder = document.getElementById('timeFinder');
 const finderForm = document.getElementById('finderForm');
 const finderResult = document.getElementById('finderResult');
 const programNames = {
+    first60: '첫 시간 · 60분',
     mind90: '마음의 시간 · 90분',
     texture120: '결의 시간 · 120분',
     deep150: '깊은 시간 · 150분',
@@ -251,9 +252,11 @@ finderForm?.addEventListener('submit', event => {
     const condition = data.get('condition');
     const depth = data.get('depth');
     const available = data.get('available');
-    let program = 'mind90';
+    let program = available === '60' ? 'first60' : 'mind90';
 
-    if (available === '120') {
+    if (available === '90') {
+        program = 'mind90';
+    } else if (available === '120') {
         program = condition === 'light' && depth === 'light' ? 'mind90' : 'texture120';
     } else if (available === '150') {
         program = condition === 'event' || depth === 'deep' ? 'deep150' : depth === 'standard' || condition === 'heavy' ? 'texture120' : 'mind90';
@@ -285,21 +288,8 @@ document.querySelectorAll('.detail-toggle').forEach(button => {
     });
 });
 
-// ─── Video controls and data saving ───
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const saveData = navigator.connection?.saveData === true;
+// ─── Video controls ───
 const pageVideos = document.querySelectorAll('video');
-
-const videoObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        const video = entry.target;
-        const mayPlay = entry.isIntersecting && video.dataset.userPaused !== 'true' && !prefersReducedMotion && !saveData;
-        if (mayPlay) video.play().catch(() => {});
-        else video.pause();
-        const control = video.parentElement?.querySelector('.video-control');
-        if (control) control.textContent = video.paused ? '영상 재생' : '영상 정지';
-    });
-}, { threshold: 0.2 });
 
 pageVideos.forEach(video => {
     const control = document.createElement('button');
@@ -318,12 +308,7 @@ pageVideos.forEach(video => {
         }
         control.textContent = video.paused ? '영상 재생' : '영상 정지';
     });
-    if (prefersReducedMotion || saveData) {
-        video.dataset.userPaused = 'true';
-        video.pause();
-        control.textContent = '영상 재생';
-    }
-    videoObserver.observe(video);
+    video.play().catch(() => {});
 });
 
 // ─── Copy helpers ───
