@@ -280,8 +280,10 @@ h1, h2, h3 {
     max-width: 720px;
 }
 
-#section4 .content { text-align: center; }
-#section4 .info-tags { justify-content: center; }
+@media (min-width: 1025px) {
+    #section4 .content { text-align: left; }
+    #section4 .info-tags { justify-content: flex-start; }
+}
 
 /* ─── Hero ─── */
 .hero {
